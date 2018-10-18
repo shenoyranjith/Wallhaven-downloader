@@ -15,6 +15,7 @@ Download wallpapers from wallhaven.cc.
 
 # To run the script automatically in linux, create a cron job. For example:
 `0 */2 * * *  /usr/bin/python /path/to/script &`
+
 The above task runs the script every two hours. 
 # Note:
 To run the script automatically, edit it and hardcode the variables in it. The variables that need to be filled are:
