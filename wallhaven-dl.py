@@ -19,10 +19,9 @@ def login():
 def search():
     searchurl = input('Enter url: ')
     searchurl += '&page='
-    return (searchurl, dict())
+    return (searchurl, login())
 
 def main():
-    login()
     BASEURL, cookies = search()
     location = input('Enter path to folder where the images are to be downloaded: ')
     pgid = int(input('Enter number of pages to download: '))	
@@ -51,6 +50,7 @@ def main():
                             for chunk in imgreq.iter_content(1024):
                                 imageFile.write(chunk)
                         break
-
+                else:
+                    print("Already exists: %s %s/%s" % ((os.path.basename(iurl)),currentImage , totalImage))
 if __name__ == '__main__':
     main()
