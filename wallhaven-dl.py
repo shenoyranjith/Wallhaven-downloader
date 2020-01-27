@@ -32,13 +32,12 @@ def main():
         urlreq = requests.get(url, cookies=cookies)
         soup = bs4.BeautifulSoup(urlreq.text, 'lxml')
         soupid = soup.findAll('a', {'class': 'preview'})
-        res = re.compile(r'\d+')
-        imgid = res.findall(str(soupid))
         imgext = ['jpg', 'png', 'bmp']
-        for i in range(len(imgid)):
+        for i in range(len(soupid)):
             currentImage = (((j - 1) * 24) + (i + 1))
-            url = 'http://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-%s.' % imgid[
-                i]
+            currentId = str(soupid[i]['href']).rsplit('/', 1)[-1]
+            subPath = currentId[:2]
+            url = 'https://w.wallhaven.cc/full/%s/wallhaven-%s.' %(subPath, currentId)
             for ext in imgext:
                 iurl = url + ext
                 osPath = os.path.join(location, os.path.basename(iurl))
